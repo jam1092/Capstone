@@ -25,6 +25,8 @@ int oldRead2 = 1;  // variable for reading the pushbutton status
 int oldRead3 = 1;  // variable for reading the pushbutton status
 int oldRead4 = 1;  // variable for reading the pushbutton status
 
+unsigned long time = 0;           // the last time the output pin was toggled
+unsigned long debounce = 200UL;   // the debounce time, increase if the output flickers
 
 void setup() {
   // initialize the LED pin as an output:
@@ -49,40 +51,48 @@ void loop() {
   buttonRead3 = digitalRead(buttonPin3);
   buttonRead4 = digitalRead(buttonPin4);
 
-  if((buttonRead1 == 1) && (oldRead1 == 0)){
+  if((buttonRead1 == 1) && (oldRead1 == 0) && millis() - time > debounce){
     if(buttonState1 == 1){
       buttonState1 = 0;
     }
     else {
       buttonState1 = 1;
-      }
+      }    
+    time = millis();
+
   }
 
-  if((buttonRead2 == 1) && (oldRead2 == 0)){
+  if((buttonRead2 == 1) && (oldRead2 == 0) && millis() - time > debounce){
     if(buttonState2 == 1){
       buttonState2 = 0;
     }
     else {
       buttonState2 = 1;
-      }
+      }    
+    time = millis();
+
   }
 
-  if((buttonRead3 == 1) && (oldRead3 == 0)){
+  if((buttonRead3 == 1) && (oldRead3 == 0) && millis() - time > debounce){
     if(buttonState3 == 1){
       buttonState3 = 0;
     }
     else {
       buttonState3 = 1;
-      }
+      }   
+    time = millis();
+
   }
 
-  if((buttonRead4 == 1) && (oldRead4 == 0)){
+  if((buttonRead4 == 1) && (oldRead4 == 0) && millis() - time > debounce){
     if(buttonState4 == 1){
       buttonState4 = 0;
     }
     else {
       buttonState4 = 1;
-      }
+      }    
+    time = millis();
+
   }
   digitalWrite(ledPin1, buttonState1);
   digitalWrite(ledPin2, buttonState2);
