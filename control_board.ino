@@ -20,10 +20,10 @@ int buttonRead2 = 0;  // variable for reading the pushbutton status
 int buttonRead3 = 0;  // variable for reading the pushbutton status
 int buttonRead4 = 0;  // variable for reading the pushbutton status
 
-int oldRead1 = 0;  // variable for reading the pushbutton status
-int oldRead2 = 0;  // variable for reading the pushbutton status
-int oldRead3 = 0;  // variable for reading the pushbutton status
-int oldRead4 = 0;  // variable for reading the pushbutton status
+int oldRead1 = 1;  // variable for reading the pushbutton status
+int oldRead2 = 1;  // variable for reading the pushbutton status
+int oldRead3 = 1;  // variable for reading the pushbutton status
+int oldRead4 = 1;  // variable for reading the pushbutton status
 
 
 void setup() {
@@ -49,7 +49,7 @@ void loop() {
   buttonRead3 = digitalRead(buttonPin3);
   buttonRead4 = digitalRead(buttonPin4);
 
-  if((buttonRead1 == HIGH) && (oldRead1 == 0)){
+  if((buttonRead1 == 1) && (oldRead1 == 0)){
     if(buttonState1 == 1){
       buttonState1 = 0;
     }
@@ -58,7 +58,7 @@ void loop() {
       }
   }
 
-  if((buttonRead2 == HIGH) && (oldRead2 == 0)){
+  if((buttonRead2 == 1) && (oldRead2 == 0)){
     if(buttonState2 == 1){
       buttonState2 = 0;
     }
@@ -67,7 +67,7 @@ void loop() {
       }
   }
 
-  if((buttonRead3 == HIGH) && (oldRead3 == 0)){
+  if((buttonRead3 == 1) && (oldRead3 == 0)){
     if(buttonState3 == 1){
       buttonState3 = 0;
     }
@@ -76,7 +76,7 @@ void loop() {
       }
   }
 
-  if((buttonRead4 == HIGH) && (oldRead4 == 0)){
+  if((buttonRead4 == 1) && (oldRead4 == 0)){
     if(buttonState4 == 1){
       buttonState4 = 0;
     }
@@ -93,5 +93,5 @@ void loop() {
   oldRead2 = buttonRead2;
   oldRead3 = buttonRead3;
   oldRead4 = buttonRead4;
-
+  delay(120);
 }
